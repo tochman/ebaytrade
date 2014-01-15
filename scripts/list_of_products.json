@@ -1,0 +1,114 @@
+[
+    {
+        "id": 29,
+        "keyword_filter": null,
+        "name": "startrek",
+        "type": "physical",
+        "sku": "",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quasi minima ex mollitia ullam aut itaque architecto saepe nobis magnam. Dicta magni quibusdam quidem dolorem accusantium impedit ipsa excepturi sequi?",
+        "search_keywords": null,
+        "availability_description": "",
+        "price": "19.9900",
+        "cost_price": "0.0000",
+        "retail_price": "0.0000",
+        "sale_price": "0.0000",
+        "sort_order": 0,
+        "is_visible": false,
+        "is_featured": false,
+        "related_products": "",
+        "inventory_level": 0,
+        "inventory_warning_level": 0,
+        "warranty": null,
+        "weight": "0.0000",
+        "width": "0.0000",
+        "height": "0.0000",
+        "depth": "0.0000",
+        "fixed_cost_shipping_price": "0.0000",
+        "is_free_shipping": false,
+        "inventory_tracking": "none",
+        "rating_total": 0,
+        "rating_count": 0,
+        "total_sold": 0,
+        "date_created": "Wed, 12 Dec 2012 20:29:45 +0000",
+        "brand_id": 0,
+        "view_count": 0,
+        "page_title": "",
+        "meta_keywords": null,
+        "meta_description": null,
+        "layout_file": "",
+        "is_price_hidden": false,
+        "price_hidden_label": "",
+        "categories": [
+            2
+        ],
+        "date_modified": "Wed, 12 Dec 2012 20:29:45 +0000",
+        "event_date_field_name": "",
+        "event_date_type": "none",
+        "event_date_start": "",
+        "event_date_end": "",
+        "myob_asset_account": "",
+        "myob_income_account": "",
+        "myob_expense_account": "",
+        "peachtree_gl_account": "",
+        "condition": "New",
+        "is_condition_shown": false,
+        "preorder_release_date": "",
+        "is_preorder_only": false,
+        "preorder_message": "",
+        "order_quantity_minimum": 0,
+        "order_quantity_maximum": 0,
+        "open_graph_type": "product",
+        "open_graph_title": "",
+        "open_graph_description": "",
+        "is_open_graph_thumbnail": true,
+        "upc": "",
+        "date_last_imported": "",
+        "option_set_id": null,
+        "tax_class_id": 0,
+        "option_set_display": "right",
+        "bin_picking_number": "",
+        "custom_url": "/startrek/",
+        "availability": "available",
+        "brand": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/brands/0.json",
+            "resource": "/brands/0"
+        },
+        "images": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/products/29/images.json",
+            "resource": "/products/29/images"
+        },
+        "discount_rules": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/products/29/discountrules.json",
+            "resource": "/products/29/discountrules"
+        },
+        "configurable_fields": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/products/29/configurablefields.json",
+            "resource": "/products/29/configurablefields"
+        },
+        "custom_fields": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/products/29/customfields.json",
+            "resource": "/products/29/customfields"
+        },
+        "videos": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/products/29/videos.json",
+            "resource": "/products/29/videos"
+        },
+        "skus": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/products/29/skus.json",
+            "resource": "/products/29/skus"
+        },
+        "rules": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/products/29/rules.json",
+            "resource": "/products/29/rules"
+        },
+        "option_set": null,
+        "options": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/products/29/options.json",
+            "resource": "/products/29/options"
+        },
+        "tax_class": {
+            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/taxclasses/0.json",
+            "resource": "/taxclasses/0"
+        }
+    }
+] 
