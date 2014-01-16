@@ -14,7 +14,7 @@ def get_listing_price
   file = open("list_of_products.json")
   @json = file.read
   @parsed = JSON.parse(@json, {:symbolize_names => true})
-  @to_ebay = Array.new
+
   @parsed.each do |product|
     @product = product
     mapping(product)
@@ -28,11 +28,13 @@ def product_xml
   puts my_xml
 end
 
-def mapping
-  @mapping << {:name => @product[:name],
-               :price =>@product[:price],
-               :description =>@product[:description],
-               :url =>@product[:brand][:url] }
+
+def mapping(product)
+  @mapping = Array.new
+  @mapping << {:name => product[:name],
+               :price =>product[:price],
+               :description =>product[:description],
+               :url =>product[:brand][:url] }
 end
 
 
