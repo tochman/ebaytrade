@@ -7,35 +7,33 @@ require 'rubygems'
 require 'json'
 require 'net/http'
 require 'uri'
-require 'builder'
+require 'active_support/all'
+
 
 def get_listing_price
   file = open("list_of_products.json")
-  json = file.read
-  @parsed = JSON.parse(json, {:symbolize_names => true})
-
+  @json = file.read
+  @parsed = JSON.parse(@json, {:symbolize_names => true})
+  @to_ebay = Array.new
   @parsed.each do |product|
     @product = product
+    mapping(product)
   end
-  to_ebay = Array.new
-  # TODO: This is not needed if we use the entire hash...
-  # but can potentially serve as a template for mapping
-  to_ebay << @product[:name]
-  to_ebay << @product[:price]
-  to_ebay << @product[:description]
-  to_ebay << @product[:brand][:url]
-
-  product_xml(@product)
+  product_xml
 end
 
-def product_xml(hash)
-  xml = Builder::XmlMarkup.new
-  xml.instruct! :xml, :encoding => "ASCII"
-  xml.product(hash)
-  #puts hash.to_xml(:root => 'product')
-  puts xml
+def product_xml
+  json = @mapping.to_json
+  my_xml = ActiveSupport::JSON.decode(json).to_xml(:root => :product, :type => '')
+  puts my_xml
 end
 
+def mapping
+  @mapping << {:name => @product[:name],
+               :price =>@product[:price],
+               :description =>@product[:description],
+               :url =>@product[:brand][:url] }
+end
 
 
 def create_listing
