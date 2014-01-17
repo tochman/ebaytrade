@@ -6,16 +6,12 @@
 # $ irb
 # > load './ebaytrader.rb'
 # > get_listing_price (or any method you want to call)
-$:.unshift File.join(File.dirname(__FILE__),'..','lib')
+$:.unshift File.dirname(__FILE__)
+$:.unshift File.join(File.dirname(__FILE__),'..', 'lib')
+$:.unshift File.join(File.dirname(__FILE__),'..', 'scripts')
 
 require 'rubygems'
-require 'nokogiri'
-require 'json'
-require 'net/http'
-require 'uri'
-require 'active_support/all'
-require 'active_support/xml_mini/nokogiri'
-require '../lib/eBayAPI'
+require 'eBayAPI'
 gem 'soap2r'
 
 
