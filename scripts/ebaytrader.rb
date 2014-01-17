@@ -25,9 +25,6 @@ def get_listing_price
     @product = product
     create_listing(product)
   end
-
-  #product_xml
-  #create_listing
 end
 
 # AddItemRequest
@@ -70,7 +67,5 @@ def create_listing(product)
 
   puts "New Item #" + resp.itemID + " added."
   puts "You spent:\n"
-
-
 end
 
