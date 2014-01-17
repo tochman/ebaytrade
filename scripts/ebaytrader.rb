@@ -3,12 +3,10 @@
 
 # Call with: ruby -r "./ebaytrader.rb" -e "get_listing_price"
 
-require 'rubygems'
 require 'json'
 require 'net/http'
 require 'uri'
 require 'active_support/all'
-require 'gyoku'
 
 
 def get_listing_price
@@ -25,19 +23,10 @@ def get_listing_price
 end
 
 def product_xml
-  json = @mapping.to_json
-  #my_xml = Gyoku.xml(@mapping.to_json)
-=begin
-  @my_xml = ActiveSupport::JSON.decode(json).to_xml(:root=> false, :skip_instruct => false,
-                                                   :skip_types => true,
-  )
-=end
-  @my_xml = ActiveSupport::JSON.decode(json).to_xml(:root=> false, :skip_instruct => false,
-                                                    :skip_types => true)
-  puts @my_xml
+  @my_xml = (@mapping).to_xml(:skip_instruct => true, :indent => 2, :skip_types => true)
+  #puts @my_xml
 end
 
-# :xmlns=>"urn:ebay:apis:eBLBaseComponents"
 def mapping(product)
   @mapping = Array.new
   @mapping << {:RequesterCredentials => [:eBayAuthToken => 'token'],
@@ -53,7 +42,7 @@ def mapping(product)
                          :PaymentMethods => ['PayPal', 'VisaMC', 'PersonalCheck'],
                          :PayPalEmailAddress => 'merchant@merchant.xx']
   }
-  #puts  @mapping
+
 end
 
 # AddItemRequest
@@ -74,7 +63,7 @@ def create_listing
   req.add_field("X-EBAY-API-DEV-NAME", devName)
   req.add_field("X-EBAY-API-APP-NAME", appName)
   req.add_field("X-EBAY-API-CERT-NAME", certName)
-  req.add_field("X-EBAY-API-SITEID", "0")
+  req.add_field("X-EBAY-API-SITEID", "0")  # '0' is US site
   req.add_field("X-EBAY-API-CALL-NAME", "AddItem")
 
   req.body = '<?xml version="1.0" encoding="utf-8"?>'+
