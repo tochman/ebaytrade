@@ -32,7 +32,8 @@ def product_xml
                                                    :skip_types => true,
   )
 =end
-  @my_xml = ActiveSupport::JSON.decode(json).to_xml
+  @my_xml = ActiveSupport::JSON.decode(json).to_xml(:root=> false, :skip_instruct => false,
+                                                    :skip_types => true)
   puts @my_xml
 end
 
