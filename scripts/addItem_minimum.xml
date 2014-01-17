@@ -35,4 +35,35 @@
       </ShippingServiceOptions>
     </ShippingDetails>
     <Site>US</Site>
-  </Item></AddItemRequest>
+  </Item>
+</AddItemRequest>
+
+
+        <?xml version="1.0" encoding="utf-8"?><AddItemRequest xmlns="urn:ebay:apis:eBLBaseComponents">
+<RequesterCredentials>
+  <eBayAuthToken>
+    AgAAAA**AQAAAA**aAAAAA**nYXYUg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4GhC5eEowmdj6x9nY+seQ**634CAA**AAMAAA**vpL13VnVQhZj2RjXxNTdFVFXgyDUzyccpR78g8ovnngrjb0OicCCrZOvEubWAWetA7Oez7Bjnu5CWa0WWfctfUQCSQr4nrqZRLfUliYHuQpXggJNVm6GKk+jjfBQkFqHtP2NM3VAQdOnn53w9N/BkVHwhaYkPfNphcSSLeo9Pk+tAXNs7CSI/o6uDb3lhzKFLeCMPpkxwetiUbJz9H4LzJsjCDs6XGBChC7xdfPKcBzllyBdVFSydU8p/m06L087EHmsnIhopHi9S92ToUMhRPMIK201+UUbvhRcTj6tXgreW25ih9fWdhNGatwswjN3YWSzLtv13Ko0YV8Sy/d6WIB0aExCFTcd+osZuSrySN4LEAE5qsZXDyC7XZBeU6gzMOyMYdO6fHWP+nTiQwJm5BNWy54Eu0L6TxCM0Ksc/kUnu/BLX25ZoNZuO6WVAvt/U2s6nawjh2RuEOf0uGqlF7m+z+Goe8/gsr71Ov6IyYgRlN1QFf9gv4CF2c2keyTmpWjK8fLrenxjNHdVXrPBGSicJs2NgOrzYXHEd0feQRYZtnFxsaIXVvPcgKrigKTOmnQBDD2cSGbBlxYei8ZpFFsLO4+nFxfPpQZy5RSHuCtp+fEyRrwQJW0d4hZ7gA2nrhPaSHI9ZLBiJ0F44ceQMznfmpRZhppxZSbfmKOJt/tiIsNFtRIH7NVqvb3v6CzB8yGbYamT1nq2bazUGz77n/kRYMlRZyiW9OfadHl43iinnyoXJB7wSsv0p5I4j/oH
+  </eBayAuthToken>
+</RequesterCredentials>
+<objects>
+  <object>
+    <Title>startrek</Title>
+    <Description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quasi minima ex mollitia ullam aut
+      itaque architecto saepe nobis magnam. Dicta magni quibusdam quidem dolorem accusantium impedit ipsa excepturi
+      sequi?
+    </Description>
+    <Location>US</Location>
+    <StartPrice>19.9900</StartPrice>
+    <Quantity>1</Quantity>
+    <ListingDuration>Days_7</ListingDuration>
+    <Country>US</Country>
+    <Currency>USD</Currency>
+    <PaymentMethods>
+      <PaymentMethod>PayPal</PaymentMethod>
+      <PaymentMethod>VisaMC</PaymentMethod>
+      <PaymentMethod>PersonalCheck</PaymentMethod>
+    </PaymentMethods>
+    <PayPalEmailAddress>merchant@merchant.xx</PayPalEmailAddress>
+  </object>
+</objects>
+</AddItemRequest>
