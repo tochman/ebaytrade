@@ -31,9 +31,13 @@ def get_listing_price
 end
 
 def product_xml
-  @my_xml = (@mapping).to_xml( :root => 'Item', :skip_instruct => true, :indent => 2, :skip_types => true, :save_with => Nokogiri::XML::Node::SaveOptions::NO_DECLARATION).strip
- # @my_xml = (@mapping).to_xml(:root=>'Item', :skip_instruct => true, :indent => 2, :skip_types => true)
-  puts @my_xml
+  @my_xml = (@mapping).to_xml( :root => 'Item',
+                               :skip_instruct => true,
+                               :indent => 0,
+                               :skip_types => true,
+                               :save_with => Nokogiri::XML::Node::SaveOptions::NO_DECLARATION).strip
+  #@my_xml = (@mapping).to_xml(:root=>'Item', :skip_instruct => true, :indent => 2, :skip_types => true)
+  #puts @my_xml
 end
 
 def mapping(product)
@@ -61,7 +65,7 @@ def create_listing
   load('myCredentials.rb')
 
 
-  url = URI.parse("https://api.sandbox.ebay.com/ws/api.dll")
+  url = URI.parse('https://api.sandbox.ebay.com/ws/api.dll')
 
   req = Net::HTTP::Post.new(url.path)
   req.add_field("X-EBAY-API-COMPATIBILITY-LEVEL", "853")
@@ -79,14 +83,16 @@ def create_listing
       @my_xml +
       '</AddItemRequest>'
 
-  #http = Net::HTTP.new(url.host, url.port)
-  #http.use_ssl = true
-  #http.verify_mode = 0
-  #res = http.start do |http_runner|
-  #  http_runner.request(req)
-  #end
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
+  http.verify_mode = 0
+  res = http.start do |http_runner|
+    http_runner.request(req)
+  end
   puts req.body
-  #puts res.body
+  puts "Responce:"
+  puts res.body
 
+  #puts "New Item #" + res.itemID + " added."
 end
 
