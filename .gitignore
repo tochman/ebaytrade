@@ -35,3 +35,7 @@
 # Versioning
 .rvmrc.env
 
+
+# Credentials
+/scripts/myCredentials.rb
+
