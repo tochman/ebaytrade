@@ -48,7 +48,8 @@ module EBay
 # This is the main class of the eBay4R library.  Start by instantiating this class (see below)
 class API
   attr_writer :debug
-
+  attr_writer :debug_io
+  
   # Creates an eBay caller object.
   #
   # You will need this object to make any API calls to eBay's servers, so instantiation is required
@@ -80,8 +81,9 @@ class API
   # special (e.g. "eBay Motors") sites.
   #
   def initialize(auth_token, dev_id, app_id, cert_id, opt = {})
-    @ver = 583
+    @ver = 827
     @debug = false
+    @debug_io = STDOUT
     @app_id = app_id
     @header_handler = RequesterCredentialsHandler.new(auth_token, dev_id, app_id, cert_id)
 
@@ -123,11 +125,11 @@ class API
 
         if resp.errors.is_a?(Array) # Something tells me there is a better way to do this
           resp.errors.each do |err|
-            err_string += err.shortMessage.chomp(".") + ", "
+            err_string += err.longMessage.chomp(".") + ", "
           end
           err_string = err_string.chop.chop
         else
-          err_string = resp.errors.shortMessage
+          err_string = resp.errors.longMessage
         end
 
         raise(Error::ApplicationError.new(resp), "#{@callName} Call Failed: #{err_string}", caller)
@@ -147,7 +149,7 @@ class API
   def makeService
     service = EBayAPIInterface.new(requestURL())
     service.headerhandler << @header_handler
-    service.wiredump_dev = STDOUT if @debug
+    service.wiredump_dev = @debug_io if @debug
 
     # I believe the line below will work after we get the kinks worked out w/ http-access2
     # service.options['protocol.http.ssl_config.verify_mode'] = OpenSSL::SSL::VERIFY_NONE
@@ -191,6 +193,45 @@ end
 # These class module methods are for creating complex types (e.g. ItemType, CategoryType, etc...)
 # and also include some helper functions
 class <<self 
+
+  def test
+   ebay = EBay::API.new(APP_EBAY['auth_token'], APP_EBAY['dev_id'], APP_EBAY['app_id'], APP_EBAY['cert_id'], sandbox: true, site_id: 100)
+  ebay.debug = true 
+  item = EBay.Item({ :PrimaryCategory => EBay.Category(:CategoryID => 6749),
+                     :Title => 'Mouse Pad 3',
+                     :Description => 'A really cool mouse pad, you know you want it...',
+                     :Location => 'USA',
+                     :StartPrice => '0.50',
+                     :BuyItNowPrice => '9.50',
+                     :DispatchTimeMax => 3,
+                     :ConditionID => 1000,
+                     :Quantity => 1,
+                     :ShippingDetails => EBay.ShippingDetails( 
+                        :ShippingServiceOptions => [
+                          EBay.ShippingServiceOptions( 
+                            :ShippingService => ShippingServiceCodeType::USPSPriority,
+                            :ShippingServiceCost => '0.0',
+                            :ShippingServiceAdditionalCost => '0.0'),
+                          EBay.ShippingServiceOptions( 
+                            :ShippingService => ShippingServiceCodeType::USPSPriorityFlatRateBox,
+                            :ShippingServiceCost => '7.0',
+                            :ShippingServiceAdditionalCost => '0.0')]),
+                            :ShippingTermsInDescription => false,
+                            :ShipToLocations => "US",
+                            :ShipToLocations => "CA",
+                            :ListingDuration => "Days_7",
+                            :Country => "US",
+                            :Currency => "USD",
+                            :PayPalEmailAddress => "foobar@example.com",
+                            :ReturnPolicy => EBay.ReturnPolicy(
+                              :Description => "Yup",
+                              :RefundOption => "MoneyBack",
+                              :ReturnsAcceptedOption => "ReturnsAccepted"
+                            ),
+                            :PaymentMethods => ["VisaMC", "PayPal"] })
+  resp = ebay.AddItem(:Item => item)
+  end
+
   def method_missing(m, *args)
     type_name = fix_case_up(m.id2name)
 

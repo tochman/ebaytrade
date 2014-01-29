@@ -30,11 +30,14 @@ end
 def create_listing(product)
   load('myCredentials.rb')
   eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true)
-  resp = eBay.AddItem(:Item => EBay.Item({ :PrimaryCategory => EBay.Category({ :CategoryID => 57882 }),
+  resp = eBay.AddItem(:Item => EBay.Item({ :PrimaryCategory => EBay.Category({:CategoryID => 57882}),
                                            :Title => product[:name],
                                            :Description => product[:description],
-                                           :ConditionID => '1500',
-                                           :ConditionDescription => 'Good',
+                                           :PictureDetails => EBay.PictureDetails(
+                                               :PictureURL => 'http://nerdywithchildren.com/wp-content/uploads/2013/07/spock-leornard-nimoy-star-trek-tos.jpg'
+                                           ),
+                                           :ConditionID => '1000',
+                                           :ConditionDescription => 'Acceptable',
                                            :Location => 'US',
                                            :StartPrice => '1',
                                            :BuyItNowPrice => product[:price],
@@ -63,4 +66,12 @@ def create_listing(product)
   puts "New Item #" + resp.itemID + " added."
   puts "You spent:\n"
 end
+
+
+#Cat 66465 does not req conditionID
+#<PictureDetails>
+#<PictureURL>http://pics.ebay.com/aw/pics/dot_clear.gif</PictureURL>
+#    </PictureDetails>
+
+#http://nerdywithchildren.com/wp-content/uploads/2013/07/spock-leornard-nimoy-star-trek-tos.jpg
 
